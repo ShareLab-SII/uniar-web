@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="CaTok: Taming Mean Flows for One-Dimensional Causal Image Tokenization">
+  <meta name="keywords" content="CaTok, causal image tokenization, MeanFlow, diffusion autoencoders">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CaTok</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="figs/favicon.png">
+</head>
+
+<style>
+  .publication-title {
+    font-family: 'Corbel', sans-serif;
+  }
+
+  .publication-authors {
+    font-family: 'Corbel', sans-serif;
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+
+  .publication-affiliations {
+    font-size: 1.18rem !important;
+    line-height: 1.35;
+  }
+
+  .corresponding-note {
+    font-size: 0.98rem !important;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .authors-block {
+    margin-bottom: 0.3rem;
+  }
+
+  .author-block a,
+  .author-block a:visited,
+  .author-block a:active {
+    color: rgb(0, 68, 0) !important;
+    font-weight: 600;
+  }
+
+  .author-block a:hover {
+    color: rgb(0, 68, 0) !important;
+    text-decoration: underline;
+  }
+
+  .teaser {
+    font-family: 'Corbel', sans-serif;
+  }
+
+  .twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .button.is-disabled {
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  .section-compact {
+    padding-top: 2.4rem;
+    padding-bottom: 2.4rem;
+  }
+
+  .figure-caption {
+    margin-top: 0.75rem;
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  .publication-links .link-block + .link-block {
+    margin-left: 1rem;
+  }
+
+  .section {
+    padding-top: 3.2rem;
+    padding-bottom: 3.2rem;
+  }
+
+  #teaser {
+    display: block;
+    margin: 0.15rem auto 0.15rem;
+  }
+
+  .abstract-text {
+    margin-top: 0;
+  }
+
+  .abstract-text p {
+    margin-top: 0.1rem;
+    margin-bottom: 0;
+  }
+
+  .abstract-block {
+    margin-bottom: 2.2rem;
+  }
+
+  .figure-image {
+    width: 760px;
+    max-width: 92vw;
+    height: auto;
+  }
+
+  .title-logo {
+    height: 1.1em;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 0.4rem;
+  }
+
+  @media (max-width: 900px) {
+    .twocol {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title"><img class="title-logo" src="./figs/favicon.png" alt="CaTok logo">CaTok: Taming Mean Flows<br>for One-Dimensional Causal Image Tokenization</h1>
+            <br>
+
+            <div class="is-size-5 publication-authors authors-block">
+              <span class="author-block"><a href="https://scholar.google.com/citations?hl=en&user=a40b6HQAAAAJ">Yitong Chen</a><sup>1,2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="https://zxwu.azurewebsites.net/">Zuxuan Wu</a><sup>1,2,3&dagger;</sup>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="https://xpqiu.github.io/en.html">Xipeng Qiu</a><sup>1,2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=f3_FP8AAAAAJ&hl=en">Yu-Gang Jiang</a><sup>1,3&dagger;</sup></span>
+            </div>
+
+            <div class="is-size-6 publication-authors corresponding-note">
+              <span class="author-block"><sup>&dagger;</sup> Corresponding authors</span>
+            </div>
+
+            <div class="is-size-6 publication-authors publication-affiliations">
+              <span class="author-block"><sup>1</sup> Institute of Trustworthy Embodied AI, Fudan University</span>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="author-block"><sup>2</sup> Shanghai Innovation Institute</span>
+            </div>
+            <div class="is-size-6 publication-authors publication-affiliations">
+              <span class="author-block"><sup>3</sup> Shanghai Key Laboratory of Multimodal Embodied AI</span>
+            </div>
+
+            <br>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2603.06449" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/ShareLab-SII/CaTok" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container is-max-desktop abstract-block">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <img id="teaser" width="100%" src="./figs/teaser.png" alt="CaTok teaser">
+          <div class="content has-text-justified abstract-text">
+            <p>
+              CaTok is a 1D causal image tokenizer with a MeanFlow decoder that enables fast one-step sampling and strong multi-step
+              reconstruction while capturing diverse visual concepts across token intervals. The one-step and multi-step results are shown in
+              cols. 2 and 3; cols. 3–7 illustrate a fine-to-coarse trend as tokens are reduced; cols. 7–10 reconstruct from different token
+              segments, revealing distinct visual concepts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-compact" id="method">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method Overview</h2>
+        <img class="figure-image" src="./figs/arch.png" alt="CaTok architecture">
+        <div class="figure-caption">
+          CaTok combines a causal ViT encoder with a MeanFlow decoder, selecting 1D tokens over time intervals to preserve causality.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-compact" id="decoder">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Decoder Comparison</h2>
+        <img class="figure-image" src="./figs/decoder.png" alt="Decoder comparison">
+        <div class="figure-caption">
+          MeanFlow decoding maintains causality and balance, supporting efficient one-step sampling.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+<pre><code>@inproceedings{catok2026,
+  title={CaTok: Taming Mean Flows for One-Dimensional Causal Image Tokenization},
+  author={Chen, Yitong and Wu, Zuxuan and Qiu, Xipeng and Jiang, Yu-Gang},
+  booktitle={CVPR},
+  year={2026}
+}
+</code></pre>
+    </div>
+  </section>
+
+  <div class="content has-text-centered">
+    <p>
+      This website is adapted from <a href="https://nerfies.github.io/">Nerfies</a> and <a href="https://mathvista.github.io/">MathVista</a>,
+      licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+  </div>
+</body>
+
+</html>
