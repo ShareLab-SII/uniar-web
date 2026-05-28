@@ -1,152 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="CaTok: Taming Mean Flows for One-Dimensional Causal Image Tokenization">
-  <meta name="keywords" content="CaTok, causal image tokenization, MeanFlow, diffusion autoencoders">
+  <meta name="description" content="UniAR: Unified Multimodal Autoregressive Modeling with Shared Context --- Visual Tokenizer is Key to Unification">
+  <meta name="keywords" content="UniAR, unified multimodal model, autoregressive modeling, visual tokenizer, image generation, image editing, multimodal understanding">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CaTok</title>
+  <title>UniAR</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="figs/favicon.png">
 </head>
 
-<style>
-  .publication-title {
-    font-family: 'Corbel', sans-serif;
-  }
-
-  .publication-authors {
-    font-family: 'Corbel', sans-serif;
-    font-size: 1.3rem;
-    line-height: 1.4;
-  }
-
-  .publication-affiliations {
-    font-size: 1.18rem !important;
-    line-height: 1.35;
-  }
-
-  .corresponding-note {
-    font-size: 0.98rem !important;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-  }
-
-  .authors-block {
-    margin-bottom: 0.3rem;
-  }
-
-  .author-block a,
-  .author-block a:visited,
-  .author-block a:active {
-    color: rgb(0, 68, 0) !important;
-    font-weight: 600;
-  }
-
-  .author-block a:hover {
-    color: rgb(0, 68, 0) !important;
-    text-decoration: underline;
-  }
-
-  .teaser {
-    font-family: 'Corbel', sans-serif;
-  }
-
-  .twocol {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .button.is-disabled {
-    pointer-events: none;
-    opacity: 0.55;
-  }
-
-  .section-compact {
-    padding-top: 2.4rem;
-    padding-bottom: 2.4rem;
-  }
-
-  .figure-caption {
-    margin-top: 0.75rem;
-    color: #555;
-    font-size: 0.95rem;
-  }
-
-  .publication-links .link-block + .link-block {
-    margin-left: 1rem;
-  }
-
-  .section {
-    padding-top: 3.2rem;
-    padding-bottom: 3.2rem;
-  }
-
-  #teaser {
-    display: block;
-    margin: 0.15rem auto 0.15rem;
-  }
-
-  .abstract-text {
-    margin-top: 0;
-  }
-
-  .abstract-text p {
-    margin-top: 0.1rem;
-    margin-bottom: 0;
-  }
-
-  .abstract-block {
-    margin-bottom: 2.2rem;
-  }
-
-  .figure-image {
-    width: 760px;
-    max-width: 92vw;
-    height: auto;
-  }
-
-  .title-logo {
-    height: 1.1em;
-    width: auto;
-    vertical-align: middle;
-    margin-right: 0.4rem;
-  }
-
-  @media (max-width: 900px) {
-    .twocol {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
 <body>
+
+  <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title"><img class="title-logo" src="./figs/favicon.png" alt="CaTok logo">CaTok: Taming Mean Flows<br>for One-Dimensional Causal Image Tokenization</h1>
+
+            <h1 class="title is-2 publication-title">
+              UniAR: Unified Multimodal Autoregressive Modeling with Shared Context
+            </h1>
+            <p class="publication-subtitle">Visual Tokenizer is Key to Unification</p>
+
             <br>
 
             <div class="is-size-5 publication-authors authors-block">
-              <span class="author-block"><a href="https://scholar.google.com/citations?hl=en&user=a40b6HQAAAAJ">Yitong Chen</a><sup>1,2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"><a href="https://zxwu.azurewebsites.net/">Zuxuan Wu</a><sup>1,2,3&dagger;</sup>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"><a href="https://xpqiu.github.io/en.html">Xipeng Qiu</a><sup>1,2,3</sup>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"><a href="https://scholar.google.com/citations?user=f3_FP8AAAAAJ&hl=en">Yu-Gang Jiang</a><sup>1,3&dagger;</sup></span>
+              <span class="author-block"><a href="https://wjpoom.github.io/" target="_blank">Wujian Peng</a><sup>1,2,*</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=pUl9H8gAAAAJ&hl=en" target="_blank">Lingchen Meng</a><sup>3,*</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">Yuxuan Cai<sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">Xianwei Zhuang<sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">Yuhuan Yang<sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">Rongyao Fang<sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">Chenfei Wu<sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">Junyang Lin<sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="https://zxwu.azurewebsites.net/" target="_blank">Zuxuan Wu</a><sup>1,2,&dagger;</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=ylhI1JsAAAAJ&hl=zh-CN" target="_blank">Shuai Bai</a><sup>3,&dagger;</sup></span>
             </div>
 
             <div class="is-size-6 publication-authors corresponding-note">
-              <span class="author-block"><sup>&dagger;</sup> Corresponding authors</span>
+              <span><sup>*</sup> Equal contribution &nbsp;&nbsp;&nbsp; <sup>&dagger;</sup> Corresponding authors</span>
             </div>
 
             <div class="is-size-6 publication-authors publication-affiliations">
@@ -154,96 +53,116 @@
               <span class="author-block"><sup>2</sup> Shanghai Innovation Institute</span>
             </div>
             <div class="is-size-6 publication-authors publication-affiliations">
-              <span class="author-block"><sup>3</sup> Shanghai Key Laboratory of Multimodal Embodied AI</span>
+              <span class="author-block"><sup>3</sup> Qwen Team, Alibaba Group</span>
             </div>
 
             <br>
 
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2603.06449" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                    </span>
-                    <span>Paper</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="https://github.com/ShareLab-SII/CaTok" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Teaser + Abstract -->
     <div class="container is-max-desktop abstract-block">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <img id="teaser" width="100%" src="./figs/teaser.png" alt="CaTok teaser">
-          <div class="content has-text-justified abstract-text">
-            <p>
-              CaTok is a 1D causal image tokenizer with a MeanFlow decoder that enables fast one-step sampling and strong multi-step
-              reconstruction while capturing diverse visual concepts across token intervals. The one-step and multi-step results are shown in
-              cols. 2 and 3; cols. 3–7 illustrate a fine-to-coarse trend as tokens are reduced; cols. 7–10 reconstruct from different token
-              segments, revealing distinct visual concepts.
-            </p>
-          </div>
+      <div class="has-text-centered">
+        <img id="teaser" width="88%" src="./figs/teaser.png" alt="UniAR teaser">
+        <div class="content has-text-justified abstract-text">
+          <p>
+            <strong>UniAR</strong> is a unified multimodal autoregressive framework that bridges visual understanding, image generation,
+            and image editing with a <strong>single discrete visual tokenizer</strong>. Unlike prior unified models that rely on separate
+            tokenizers for perception and generation, UniAR places both modalities in a shared token space, enabling the model to directly
+            understand its own generated visual tokens <strong>within the same context</strong> without an extra visual re-encoding step.
+            Built on lookup-free bitwise quantization, multi-level visual feature modeling, and parallel bitwise prediction, UniAR achieves
+            strong performance across generation, editing, and understanding benchmarks while exposing an emergent interleaved
+            generation-understanding capability.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== Highlights ===== -->
+  <section class="section section-compact" id="highlights">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Highlights</h2>
+      <span class="section-divider"></span>
+      <div class="highlight-box content">
+        <ul>
+          <li><strong>True unification via shared context.</strong> A single visual tokenizer is used for both understanding and generation, allowing UniAR to interpret its own generated visual tokens directly.</li>
+          <li><strong>Bitwise visual tokenization at scale.</strong> Lookup-free BSQ quantization expands the effective visual vocabulary with low overhead while preserving semantic alignment.</li>
+          <li><strong>Multi-level visual features.</strong> Hierarchical feature fusion retains both high-level semantics and fine-grained details, which is especially important for text rendering and editing.</li>
+          <li><strong>Fast autoregressive generation.</strong> Parallel bitwise prediction and a diffusion-based visual decoder with resolution upsampling reduce sequence length and accelerate image synthesis.</li>
+          <li><strong>Strong multimodal performance.</strong> UniAR achieves state-of-the-art or highly competitive results on image generation, image editing, OCR-heavy understanding, and long-text rendering.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Method Overview ===== -->
   <section class="section section-compact" id="method">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Method Overview</h2>
-        <img class="figure-image" src="./figs/arch.png" alt="CaTok architecture">
-        <div class="figure-caption">
-          CaTok combines a causal ViT encoder with a MeanFlow decoder, selecting 1D tokens over time intervals to preserve causality.
-        </div>
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Method Overview</h2>
+      <span class="section-divider"></span>
+      <img class="figure-image" src="./figs/arch.png" alt="UniAR architecture">
+      <div class="figure-caption">
+        UniAR consists of three core components: a unified visual tokenizer that discretizes semantic visual features into shared bitwise tokens,
+        a unified autoregressive backbone that jointly models text and visual tokens, and a diffusion-based visual decoder that reconstructs
+        high-fidelity images from predicted visual tokens.
       </div>
     </div>
   </section>
 
-  <section class="section section-compact" id="decoder">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Decoder Comparison</h2>
-        <img class="figure-image" src="./figs/decoder.png" alt="Decoder comparison">
-        <div class="figure-caption">
-          MeanFlow decoding maintains causality and balance, supporting efficient one-step sampling.
-        </div>
+  <!-- ===== Interleaved Generation & Understanding ===== -->
+  <section class="section section-compact" id="shared-context">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Interleaved Generation and Understanding</h2>
+      <span class="section-divider"></span>
+      <img class="figure-image" src="./figs/decoder.png" alt="UniAR interleaved generation-understanding example">
+      <div class="figure-caption">
+        UniAR unifies generation and understanding in the same discrete visual space. This enables an emergent interleaved capability:
+        after generating an image, the model can answer follow-up questions about its own output without re-encoding the image.
       </div>
     </div>
   </section>
 
-  <section class="section" id="BibTeX">
+  <!-- ===== BibTeX ===== -->
+  <section class="section bibtex-section" id="BibTeX">
     <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-<pre><code>@inproceedings{catok2026,
-  title={CaTok: Taming Mean Flows for One-Dimensional Causal Image Tokenization},
-  author={Chen, Yitong and Wu, Zuxuan and Qiu, Xipeng and Jiang, Yu-Gang},
-  booktitle={CVPR},
+      <h2 class="title has-text-centered">BibTeX</h2>
+      <span class="section-divider"></span>
+      <div class="bibtex-block">
+        <button class="bibtex-copy-btn" onclick="copyBibtex()" id="copyBtn">Copy</button>
+<pre><code id="bibtexCode">@inproceedings{peng2026uniar,
+  title={Unified Multimodal Autoregressive Modeling with Shared Context --- Visual Tokenizer is Key to Unification},
+  author={Peng, Wujian and Meng, Lingchen and Cai, Yuxuan and Zhuang, Xianwei and Yang, Yuhuan and Fang, Rongyao and Wu, Chenfei and Lin, Junyang and Wu, Zuxuan and Bai, Shuai},
+  booktitle={ICML},
   year={2026}
-}
-</code></pre>
+}</code></pre>
+      </div>
     </div>
   </section>
 
-  <div class="content has-text-centered">
-    <p>
-      This website is adapted from <a href="https://nerfies.github.io/">Nerfies</a> and <a href="https://mathvista.github.io/">MathVista</a>,
-      licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-    </p>
-  </div>
-</body>
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container has-text-centered">
+      <p>
+        This website is adapted from <a href="https://nerfies.github.io/">Nerfies</a> and <a href="https://mathvista.github.io/">MathVista</a>,
+        licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+      </p>
+    </div>
+  </footer>
 
+  <script>
+  function copyBibtex() {
+    var code = document.getElementById('bibtexCode').textContent;
+    navigator.clipboard.writeText(code).then(function() {
+      var btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+    });
+  }
+  </script>
+
+</body>
 </html>
