@@ -7,6 +7,16 @@
   <meta name="keywords" content="UniAR, unified multimodal model, autoregressive modeling, visual tokenizer, image generation, image editing, multimodal understanding">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UniAR</title>
+  <link rel="icon" href="data:,">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-562412C65F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-562412C65F');
+  </script>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
@@ -16,6 +26,14 @@
 </head>
 
 <body>
+
+  <!-- ===== Logo Bar ===== -->
+  <div class="logo-bar">
+    <div class="container is-max-desktop">
+      <img src="./figs/qwen-logo.png" alt="Qwen logo" class="logo-left">
+      <img src="./figs/TEAI_logo.png" alt="TEAI logo" class="logo-right">
+    </div>
+  </div>
 
   <!-- ===== Hero ===== -->
   <section class="hero">
@@ -28,11 +46,12 @@
               UniAR: Unified Multimodal Autoregressive Modeling with Shared Context
             </h1>
             <p class="publication-subtitle">Visual Tokenizer is Key to Unification</p>
+            <p class="publication-venue">ICML 2026</p>
 
             <br>
 
             <div class="is-size-5 publication-authors authors-block">
-              <span class="author-block"><a href="https://wjpoom.github.io/" target="_blank">Wujian Peng</a><sup>1,2,*</sup>&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a href="https://wjpoom.github.io/" target="_blank">Wujian Peng</a><sup>1,2,*,#</sup>&nbsp;&nbsp;&nbsp;</span>
               <span class="author-block"><a href="https://scholar.google.com/citations?user=pUl9H8gAAAAJ&hl=en" target="_blank">Lingchen Meng</a><sup>3,*,&#8225;</sup>&nbsp;&nbsp;&nbsp;</span>
               <span class="author-block">Yuxuan Cai<sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
               <span class="author-block">Xianwei Zhuang<sup>3</sup>&nbsp;&nbsp;&nbsp;</span>
@@ -45,7 +64,7 @@
             </div>
 
             <div class="is-size-6 publication-authors corresponding-note">
-              <span><sup>*</sup> Equal contribution &nbsp;&nbsp;&nbsp; <sup>&dagger;</sup> Corresponding authors &nbsp;&nbsp;&nbsp; <sup>&#8225;</sup> Project lead</span>
+              <span><sup>*</sup> Equal contributions &nbsp;&nbsp;&nbsp; <sup>#</sup> Work done during internship at Qwen &nbsp;&nbsp;&nbsp; <sup>&dagger;</sup> Corresponding authors &nbsp;&nbsp;&nbsp; <sup>&#8225;</sup> Project lead</span>
             </div>
 
             <div class="is-size-6 publication-authors publication-affiliations">
@@ -54,6 +73,27 @@
             </div>
             <div class="is-size-6 publication-authors publication-affiliations">
               <span class="author-block"><sup>3</sup> Qwen Team, Alibaba Group</span>
+            </div>
+
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="#" target="_blank">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>Arxiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/ShareLab-SII/UniAR" target="_blank">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>GitHub</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/collections/ShareLab-SII/uniar" target="_blank">
+                  <span class="icon"><i class="fas fa-cube"></i></span>
+                  <span>Checkpoints</span>
+                </a>
+              </span>
             </div>
 
             <br>
@@ -66,17 +106,21 @@
     <!-- Teaser + Abstract -->
     <div class="container is-max-desktop abstract-block">
       <div class="has-text-centered">
-        <img id="teaser" width="88%" src="./figs/teaser.png" alt="UniAR teaser">
+        <img id="teaser" width="88%" src="./figs/teaser.jpg" alt="UniAR teaser">
         <div class="content has-text-justified abstract-text">
           <p>
-            <strong>UniAR</strong> is a unified multimodal autoregressive framework that bridges visual understanding, image generation,
-            and image editing with a <strong>single discrete visual tokenizer</strong>. Unlike prior unified models that rely on separate
-            tokenizers for perception and generation, UniAR places both modalities in a shared token space, enabling the model to directly
-            understand its own generated visual tokens <strong>within the same context</strong> without an extra visual re-encoding step.
-            Built on lookup-free bitwise quantization, multi-level visual feature modeling, and parallel bitwise prediction, UniAR achieves
-            strong performance across generation, editing, and understanding benchmarks while exposing an emergent interleaved
-            generation-understanding capability.
+            <strong>UniAR</strong> is a unified autoregressive multimodal model that handles image understanding, image generation,
+            and image editing in a single Transformer. Unlike prior unified models that rely on two separate visual tokenizers
+            (splitting the representation space), UniAR uses a <strong>single discrete visual tokenizer</strong> as the key bridge
+            between understanding and generation, enabling a shared context in which the model can directly interpret its own
+            generated visual tokens without additional re-encoding.
           </p>
+          <p><strong>Key design choices:</strong></p>
+          <ul>
+            <li><strong>Multi-level BSQ tokenizer</strong> — fuses shallow (low-level detail) and deep (high-level semantic) visual features via lookup-free Binary Spherical Quantization, scaling the effective vocabulary to 2<sup>64</sup> codes with minimal overhead.</li>
+            <li><strong>Parallel bitwise prediction</strong> — jointly predicts spatially grouped, multi-level visual codes per AR step, achieving a 32x visual compression ratio (a 1024×1024 image needs only 256 AR tokens).</li>
+            <li><strong>DiT-based visual decoder</strong> — an SD3-medium transformer with semantic visual feature injection that reconstructs high-fidelity images from discrete visual tokens, with resolution upsampling support.</li>
+          </ul>
         </div>
       </div>
     </div>
